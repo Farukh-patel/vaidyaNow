@@ -22,10 +22,10 @@ const Navbar = () => {
           <div className="text-2xl font-bold text-cyan-600">VaidyaNow</div>
 
           <ul className="hidden md:flex space-x-8 font-medium">
-            <li className="hover:text-cyan-600 transition cursor-pointer">Home</li>
-            <li className="hover:text-cyan-600 transition cursor-pointer">Services</li>
-            <li className="hover:text-cyan-600 transition cursor-pointer">Contact Us</li>
-            <li className="hover:text-cyan-600 transition cursor-pointer">About</li>
+            <li className="hover:text-cyan-600 transition cursor-pointer"><Link to="/">Home</Link></li>
+            <li className="hover:text-cyan-600 transition cursor-pointer"><Link to="/services">Services</Link></li>
+            <li className="hover:text-cyan-600 transition cursor-pointer"><Link to="/contactus">Contact Us</Link></li>
+            <li className="hover:text-cyan-600 transition cursor-pointer"><Link to="/aboutus">About</Link></li>
           </ul>
 
           <div className="hidden md:flex space-x-4 items-center">

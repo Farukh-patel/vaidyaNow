@@ -1,9 +1,14 @@
 import React, { useContext } from 'react';
 import themeContext from '../contexts/themeContext';
+import { ToastContainer, toast } from 'react-toastify'
 
 const Signup = () => {
   const { theme } = useContext(themeContext);
-
+  const notify = () => toast.success('Signup successfull');
+  const handleOnSignup = (e) => {
+    e.preventDefault()
+    notify()
+  }
   return (
     <div
       className={`min-h-screen flex items-center justify-center transition-all duration-300 ${
@@ -12,6 +17,23 @@ const Signup = () => {
           : 'bg-gradient-to-tr from-zinc-900 to-gray-800 text-amber-50'
       }`}
     >
+      <ToastContainer
+        position="top-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        closeOnClick={false}
+        pauseOnHover
+        draggable
+        theme={theme === 'light' ? 'light' : 'dark'}
+        toastStyle={{
+          minHeight: '45px',
+          padding: '8px 12px',
+          fontSize: '14px',
+          borderRadius: '8px',
+          marginTop:"60px"
+        }}
+      />
+
       <div
         className={`w-full max-w-xs p-5 rounded-2xl shadow-xl border transition-all duration-300 backdrop-blur-sm ${
           theme === 'light'
@@ -28,7 +50,7 @@ const Signup = () => {
             <label className="block mb-1 text-sm font-medium">Full Name</label>
             <input
               type="text"
-              placeholder="John Doe"
+              placeholder="Your Name"
               className={`w-full px-3 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-purple-500 transition ${
                 theme === 'light'
                   ? 'bg-white border-gray-300 text-gray-800'
@@ -65,6 +87,7 @@ const Signup = () => {
 
           <button
             type="submit"
+            onClick={handleOnSignup}
             className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-lg transition"
           >
             Sign Up
