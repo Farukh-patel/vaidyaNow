@@ -6,7 +6,7 @@ const Home = () => {
   const { theme } = useContext(themeContext);
   const notify = () => toast.success('Generating your result!✨');
   return (
-    <div className={`min-h-screen ${theme === "light" ? "bg-gray-50 text-gray-800" : "bg-zinc-800 text-amber-50"} `}>
+    <div className={`min-h-screen ${theme === "light" ? "bg-gray-50 text-gray-800" : "bg-gray-800 text-amber-50"} `}>
       <div className='p-30'>
         <div className="text-center py-6 px-4">
           <h1 className="text-2xl sm:text-3xl font-bold mb-3">
