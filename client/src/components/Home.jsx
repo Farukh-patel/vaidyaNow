@@ -2,11 +2,13 @@ import React, { useContext } from 'react';
 import themeContext from '../contexts/themeContext';
 import { ToastContainer, toast } from 'react-toastify'
 import Doctors from './Doctors';
+import ReviewContainer from './ReviewContainer';
+import { Stethoscope, Bot, NotebookPen, WandSparkles } from 'lucide-react'
 const Home = () => {
   const { theme } = useContext(themeContext);
   const notify = () => toast.success('Generating your result!✨');
   return (
-    <div className={`min-h-screen ${theme === "light" ? "bg-gray-50 text-gray-800" : "bg-gray-800 text-amber-50"} `}>
+    <div className={`min-h-screen ${theme === "light" ? "bg-gray-50 text-gray-800" : "bg-gray-900 text-amber-50"} `}>
       <div className='p-30'>
         <div className="text-center py-6 px-4">
           <h1 className="text-2xl sm:text-3xl font-bold mb-3">
@@ -24,7 +26,8 @@ const Home = () => {
         <div className="flex justify-center mb-6 px-4">
           <div className="flex flex-wrap justify-center gap-3 max-w-screen-md w-full">
             <div className="shadow-md rounded-lg p-3 w-36 sm:w-40 flex flex-col items-center  dark:bg-zinc-700">
-              <img src="notepad.png" alt="Notepad" className="h-10 mb-2" />
+              <NotebookPen className="h-10 w-10 text-green-500" />
+
               <span className="font-bold text-green-600 text-sm">STEP 1</span>
               <p className="text-center text-xs sm:text-sm mt-1">Enter Your Symptoms</p>
             </div>
@@ -34,7 +37,8 @@ const Home = () => {
             </div>
 
             <div className="shadow-md rounded-lg p-3 w-36 sm:w-40 flex flex-col items-center  dark:bg-zinc-700">
-              <img src="robot.png" alt="AI Bot" className="h-10 mb-2" />
+              <Bot className="h-10 w-10 text-green-500" />
+
               <span className="font-bold text-green-600 text-sm">STEP 2</span>
               <p className="text-center text-xs sm:text-sm mt-1">AI Analyzes Info</p>
             </div>
@@ -44,7 +48,7 @@ const Home = () => {
             </div>
 
             <div className="shadow-md rounded-lg p-3 w-36 sm:w-40 flex flex-col items-center ">
-              <img src="doctor.png" alt="Doctor" className="h-10 mb-2" />
+              <Stethoscope className="h-10 w-10 text-green-500" />
               <span className="font-bold text-green-600 text-sm">STEP 3</span>
               <p className="text-center text-xs sm:text-sm mt-1">Connect to Doctor</p>
             </div>
@@ -56,27 +60,31 @@ const Home = () => {
             className={`w-full max-w-md min-h-[100px] p-3 rounded-lg border text-base focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none ${theme === "light" ? "placeholder:text-gray-800 bg-white" : "placeholder:text-amber-50 bg-zinc-700"}`}
             placeholder="Describe your symptoms, how frequent they are, your age, etc."
           />
-          <button onClick={notify} className="mt-3 bg-blue-600 hover:bg-blue-700 text-white cursor-pointer px-5 py-2 rounded-lg shadow-md transition duration-200">
-            Generate ✨
+          <button onClick={notify} className="mt-3 bg-blue-600 flex justify-center items-center gap-2 hover:bg-blue-700 text-white cursor-pointer px-5 py-2 rounded-lg shadow-md transition duration-200">
+            Generate               <WandSparkles className="h-5 w-5 " />
+
           </button>
-         <ToastContainer
-                position="bottom-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                closeOnClick={false}
-                pauseOnHover
-                draggable
-                theme={theme === 'light' ? 'light' : 'dark'}
-                toastStyle={{
-                  minHeight: '60px',
-                  padding: '8px 12px',
-                  fontSize: '14px',
-                  borderRadius: '8px',
-                }}
-              />
+          <ToastContainer
+            position="bottom-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            closeOnClick={false}
+            pauseOnHover
+            draggable
+            theme={theme === 'light' ? 'light' : 'dark'}
+            toastStyle={{
+              minHeight: '60px',
+              padding: '8px 12px',
+              fontSize: '14px',
+              borderRadius: '8px',
+            }}
+          />
         </div>
       </div>
-      <Doctors/>
+      <div>
+        <ReviewContainer />
+      </div>
+      <Doctors />
     </div>
   );
 };

@@ -1,41 +1,22 @@
-const express = require('express');
+import express from "express"
 
-const  userModel =require("./models/user")
-const { connectToDataBase } = require('./config/connectToMongoDB');
+import { connectToDataBase } from './config/connectToMongoDB.js';
 // const { use } = require('react');
-const user = require('./models/user');
-
+import authRoutes from "./routes/authRoutes.js";
 const port = 3000;
 const app = express();
 
+// middlewares
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use("/auth",authRoutes)
 // Routes
 app.get("/", (req, res) => {
     res.send("This is the home page!");
 });
 
-app.get("/send", async (req, res) => {
-    try {
-        let user = await userModel.create({
-            name: "farukh",
-            email: "farukh@gmail.com",
-            password: "12345",
-            role: "patient",
-
-        });
-        res.send("user created", user)
-    } catch (error) {
-        res.send("error in creating the user!! : ",error.message)
-    }
-})
-
-app.get("/getallusers",async(req,res)=>{
-    try {
-        let users=await userModel.find({});
-        res.send(users)
-    } catch (error) {
-        console.log("error in getting all users!!")
-    }
-})
 
 // Starting the server only after DB is connected
 const startServer = async () => {
