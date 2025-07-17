@@ -1,7 +1,6 @@
 import express from "express"
 
 import { connectToDataBase } from './config/connectToMongoDB.js';
-// const { use } = require('react');
 import authRoutes from "./routes/authRoutes.js";
 const port = 3000;
 const app = express();
