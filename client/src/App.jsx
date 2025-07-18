@@ -10,7 +10,7 @@ import ContactUs from './components/ContactUs'
 import About from './components/About'
 import Services from './components/Services'
 function App() {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
 
   return (
     <>

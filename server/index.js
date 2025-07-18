@@ -2,15 +2,16 @@ import express from "express"
 
 import { connectToDataBase } from './config/connectToMongoDB.js';
 import authRoutes from "./routes/authRoutes.js";
+import cors from 'cors';
 const port = 3000;
 const app = express();
 
 // middlewares
-
+app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/auth",authRoutes)
+app.use("/api/v1/auth",authRoutes)
 // Routes
 app.get("/", (req, res) => {
     res.send("This is the home page!");

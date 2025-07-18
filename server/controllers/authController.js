@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken'
 export const registerUser = async (req, res) => {
     const { name, email, password, role } = req.body;
-      if (!name || !email || !password || !role) {
+    if (!name || !email || !password ) {
         res.json({
             status: 'error',
             message: "All fields are required",
@@ -26,8 +26,8 @@ export const registerUser = async (req, res) => {
             role,
         });
 
-        return res.status(201).json({
-            status: "success", 
+       return res.status(201).json({
+            status: "success",
             message: "User created successfully",
             user: {
                 id: newUser._id,
@@ -36,6 +36,7 @@ export const registerUser = async (req, res) => {
                 role: newUser.role,
             },
         });
+
     } catch (error) {
         console.error("Register Error:", error.message);
         return res.status(500).json({
@@ -47,7 +48,7 @@ export const registerUser = async (req, res) => {
 
 export const LoginUser = async (req, res) => {
     const { email, password } = req.body;
-      if ( !email || !password ) {
+    if (!email || !password) {
         res.json({
             status: 'error',
             message: "All fields are required",

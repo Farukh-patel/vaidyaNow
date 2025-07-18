@@ -1,13 +1,44 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect,useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import themeContext from '../contexts/themeContext';
-import { ToastContainer, toast } from 'react-toastify'
+import axios from 'axios';
+
 const Login = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
   const { theme } = useContext(themeContext);
-  const notify = () => toast.success('Login successfull');
-  const handleOnLogin = (e) => {
-    e.preventDefault()
-    notify()
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // ✅ show toast when arriving with state
+  useEffect(() => {
+  if (location.state?.toastMessage) {
+    toast.success(location.state.toastMessage);
+    navigate(location.pathname, { replace: true }); // clear state
   }
+}, [location, navigate]);
+
+
+const handleOnLogin = async (e) => {
+  e.preventDefault();
+  try {
+    const res = await axios.post("http://localhost:3000/api/v1/auth/login", formData);
+    if (res.data.status === "success") {
+      toast.success('Login successful', {
+        onClose: () => navigate("/"), // redirect after toast closes
+        autoClose: 1500
+      });
+    } else {
+      toast.error('Invalid credentials');
+    }
+  } catch (err) {
+    toast.error("Login failed. Please try again.");
+  }
+};
 
   return (
     <div
@@ -29,7 +60,7 @@ const Login = () => {
           padding: '8px 12px',
           fontSize: '14px',
           borderRadius: '8px',
-          marginTop:"60px"
+          marginTop: "60px"
         }}
       />
 
@@ -43,10 +74,11 @@ const Login = () => {
           Welcome Back
         </h2>
 
-        <form className="space-y-4">
+        <form onSubmit={handleOnLogin} className="space-y-4">
           <div>
             <label className="block mb-1 text-sm font-medium">Email</label>
             <input
+              onChange={e => setFormData({ ...formData, email: e.target.value })}
               type="email"
               placeholder="you@example.com"
               className={`w-full px-3 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 transition ${theme === 'light'
@@ -59,6 +91,8 @@ const Login = () => {
           <div>
             <label className="block mb-1 text-sm font-medium">Password</label>
             <input
+              onChange={e => setFormData({ ...formData, password: e.target.value })}
+
               type="password"
               placeholder="••••••••"
               className={`w-full px-3 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 transition ${theme === 'light'
@@ -70,7 +104,6 @@ const Login = () => {
 
           <button
             type="submit"
-            onClick={handleOnLogin}
             className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition"
           >
             Log In
