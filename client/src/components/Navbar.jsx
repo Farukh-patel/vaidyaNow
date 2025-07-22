@@ -31,12 +31,12 @@ const Navbar = () => {
 
           <div className="hidden md:flex space-x-4 items-center">
             <Link to="/login">
-              <button className="bg-cyan-500 flex gap-1 justify-center items-center text-white px-4 py-2 rounded hover:bg-cyan-600 transition">
+              <button className="bg-cyan-500 flex gap-1 cursor-pointer justify-center items-center text-white px-4 py-2 rounded hover:bg-cyan-600 transition">
                <User className='h-5'/> Login
               </button>
             </Link>
             <Link to="/signup">
-              <button className="bg-cyan-500 flex gap-1 justify-center items-center text-white px-4 py-2 rounded hover:bg-cyan-700 transition">
+              <button className="bg-cyan-500 flex gap-1 cursor-pointer justify-center items-center text-white px-4 py-2 rounded hover:bg-cyan-700 transition">
                <UserPlus className='h-5'/> Sign Up
               </button>
             </Link>
@@ -49,9 +49,9 @@ const Navbar = () => {
               aria-label="Toggle Theme"
             >
               {theme === 'light' ? (
-                <Sun/>
+                <Sun className='cursor-pointer'/>
               ) : (
-                <Moon/>
+                <Moon className='cursor-pointer'/>
               )}
             </button>
           </div>

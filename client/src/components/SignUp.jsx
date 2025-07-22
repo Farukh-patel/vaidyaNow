@@ -2,9 +2,11 @@ import React, { useContext, useState, useEffect } from 'react';
 import themeContext from '../contexts/themeContext';
 import { ToastContainer, toast } from 'react-toastify'
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import ReCaptcha from 'react-google-recaptcha'
 const Signup = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [recaptchaToken, setRecaptchaToken] = useState(null);
   const { theme } = useContext(themeContext);
   const [formData, setFormData] = useState({
     name: "",
@@ -21,19 +23,16 @@ const Signup = () => {
     e.preventDefault();
     const res = await axios.post("http://localhost:3000/api/v1/auth/register", formData);
     console.log(res);
-
     navigate("/login", {
       state: { toastMessage: "SignUp complete! Please login to continue." }
     });
-
-
   }
   return (
     <div
-      className={`min-h-screen flex items-center justify-center transition-all duration-300 ${theme === 'light'
+      className={`min-h-screen  flex items-center justify-center transition-all duration-300 ${theme === 'light'
         ? 'bg-gradient-to-tr from-purple-100 to-white text-gray-800'
         : 'bg-gradient-to-tr from-zinc-900 to-gray-800 text-amber-50'
-        }`}
+        } overflow-y-auto`}
     >
       <ToastContainer
         position="top-left"
@@ -53,7 +52,7 @@ const Signup = () => {
       />
 
       <div
-        className={`w-full max-w-xs p-5 rounded-2xl shadow-xl border transition-all duration-300 backdrop-blur-sm ${theme === 'light'
+        className={`w-full mt-15 max-w-sm p-5 rounded-2xl shadow-xl border transition-all duration-300 backdrop-blur-sm ${theme === 'light'
           ? 'bg-white/80 border-gray-200'
           : 'bg-zinc-800/60 border-zinc-700'
           }`}
@@ -103,7 +102,11 @@ const Signup = () => {
                 }`}
             />
           </div>
-
+            <ReCaptcha
+              sitekey="6Lf-O4srAAAAAGjHM_aWUpW772MqvQaXgom9h0wb"
+              onChange={(token) => setRecaptchaToken(token)}
+              onExpired={() => setRecaptchaToken(null)}
+            />
           <button
             type="submit"
             className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-lg transition"

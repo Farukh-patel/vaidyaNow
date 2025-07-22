@@ -18,7 +18,7 @@ export const doctors = [
         rating: 4.8,
         location: "Mumbai",
         isAvailable: false,
-        profileImage: "https://randomuser.me/api/portraits/women/49.jpg",
+        profileImage: "https://randomuser.me/api/portraits/women/50.jpg",
         bio: "Specialist in skin care, acne, pigmentation, and cosmetic dermatology.",
     },
     {
@@ -29,7 +29,7 @@ export const doctors = [
         rating: 4.7,
         location: "Delhi",
         isAvailable: true,
-        profileImage: "https://randomuser.me/api/portraits/men/76.jpg",
+        profileImage: "https://randomuser.me/api/portraits/men/45.jpg",
         bio: "Expert in treating ear, nose, throat infections and surgeries.",
     },
     {
@@ -40,7 +40,7 @@ export const doctors = [
         rating: 4.6,
         location: "Bangalore",
         isAvailable: true,
-        profileImage: "https://randomuser.me/api/portraits/women/70.jpg",
+        profileImage: "https://randomuser.me/api/portraits/women/75.jpg",
         bio: "Helping women with reproductive health, pregnancy care, and hormonal issues.",
     },
     {
@@ -51,7 +51,7 @@ export const doctors = [
         rating: 4.4,
         location: "Hyderabad",
         isAvailable: false,
-        profileImage: "https://randomuser.me/api/portraits/men/89.jpg",
+        profileImage: "https://randomuser.me/api/portraits/men/71.jpg",
         bio: "Focuses on mental health, stress management, depression and anxiety treatment.",
     },
 ];

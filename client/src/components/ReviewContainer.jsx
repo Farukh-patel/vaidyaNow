@@ -94,9 +94,6 @@ return (
 
        <div className="flex flex-col w-full">
 
-            <div className="w-full md:w-full p-6 ">
-                <Features />
-            </div>
 
             <div
                 className={`w-full flex flex-col items-center justify-center px-4 py-10 transition-colors duration-300 ${theme === 'light' ? 'bg-gray-100 text-gray-800' : 'bg-gray-900 text-amber-50'}`}

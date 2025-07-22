@@ -14,7 +14,6 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // ✅ show toast when arriving with state
   useEffect(() => {
   if (location.state?.toastMessage) {
     toast.success(location.state.toastMessage);
@@ -22,14 +21,13 @@ const Login = () => {
   }
 }, [location, navigate]);
 
-
 const handleOnLogin = async (e) => {
   e.preventDefault();
   try {
     const res = await axios.post("http://localhost:3000/api/v1/auth/login", formData);
     if (res.data.status === "success") {
       toast.success('Login successful', {
-        onClose: () => navigate("/"), // redirect after toast closes
+        onClose: () => navigate("/"), 
         autoClose: 1500
       });
     } else {
@@ -64,12 +62,7 @@ const handleOnLogin = async (e) => {
         }}
       />
 
-      <div
-        className={`w-full max-w-xs p-5 rounded-2xl shadow-xl border transition-all duration-300 backdrop-blur-sm ${theme === 'light'
-          ? 'bg-white/80 border-gray-200'
-          : 'bg-zinc-800/60 border-zinc-700'
-          }`}
-      >
+      <div className={`w-full max-w-xs p-5 rounded-2xl shadow-xl border transition-all duration-300 backdrop-blur-sm ${theme === 'light' ? 'bg-white/80 border-gray-200' : 'bg-zinc-800/60 border-zinc-700' }`} >
         <h2 className="text-xl sm:text-2xl font-bold text-center mb-5 tracking-tight">
           Welcome Back
         </h2>
