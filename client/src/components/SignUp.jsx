@@ -21,11 +21,16 @@ const Signup = () => {
   const notify = (text) => toast.success(text);
   const handleOnSignup = async (e) => {
     e.preventDefault();
-    const res = await axios.post("http://localhost:3000/api/v1/auth/register", formData);
-    console.log(res);
-    navigate("/login", {
-      state: { toastMessage: "SignUp complete! Please login to continue." }
-    });
+    try {
+      const res = await axios.post("http://localhost:3000/api/v1/auth/register", formData);
+      console.log(res);
+      navigate("/login", {
+        state: { toastMessage: "SignUp complete! Please login to continue." }
+      });
+    } catch (error) {
+      toast.error("SignUp failed. Please try again.");
+    }
+
   }
   return (
     <div
@@ -102,11 +107,11 @@ const Signup = () => {
                 }`}
             />
           </div>
-            <ReCaptcha
-              sitekey="6Lf-O4srAAAAAGjHM_aWUpW772MqvQaXgom9h0wb"
-              onChange={(token) => setRecaptchaToken(token)}
-              onExpired={() => setRecaptchaToken(null)}
-            />
+          <ReCaptcha
+            sitekey="6Lf-O4srAAAAAGjHM_aWUpW772MqvQaXgom9h0wb"
+            onChange={(token) => setRecaptchaToken(token)}
+            onExpired={() => setRecaptchaToken(null)}
+          />
           <button
             type="submit"
             className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-lg transition"

@@ -9,23 +9,26 @@ import SignUp from './components/SignUp'
 import ContactUs from './components/ContactUs'
 import About from './components/About'
 import Services from './components/Services'
+import UserProvider from './contexts/UserProvider'
 function App() {
   const [theme, setTheme] = useState("dark");
 
   return (
     <>
       <themeContext.Provider value={{ theme, setTheme }}>
-        <BrowserRouter>
+        <UserProvider>
+          <BrowserRouter>
             <Navbar />
-          <Routes>
-            <Route path='/' element={<Home/>}/>
-            <Route path='/login' element={<Login/>}/>
-            <Route path='/signup' element={<SignUp/>}/>
-            <Route path='/contactus' element={<ContactUs/>}/>
-            <Route path='/aboutus' element={<About/>}/>
-            <Route path='/services' element={<Services/>}/>
-          </Routes>
-        </BrowserRouter>
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/signup' element={<SignUp />} />
+              <Route path='/contactus' element={<ContactUs />} />
+              <Route path='/aboutus' element={<About />} />
+              <Route path='/services' element={<Services />} />
+            </Routes>
+          </BrowserRouter>
+        </UserProvider>
       </themeContext.Provider>
     </>
   )

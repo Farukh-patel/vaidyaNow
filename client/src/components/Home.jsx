@@ -6,8 +6,14 @@ import ReviewContainer from './ReviewContainer';
 import { Stethoscope, Bot, NotebookPen, WandSparkles } from 'lucide-react'
 import Features from './Features';
 import Footer from './Footer';
+import userContext from '../contexts/usserContext';
+import useUser from '../hooks/useUser';
 const Home = () => {
   const { theme } = useContext(themeContext);
+  // const currentUser=useContext(userContext);
+  // console.log(currentUser)
+
+  const {user}=useUser()
   const notify = () => toast.success('Generating your result!✨');
   return (
     <div className={`min-h-screen font-mono ${theme === "light" ? "bg-gray-50 text-gray-800" : "bg-gray-900 text-amber-50"} `}>
@@ -29,7 +35,7 @@ const Home = () => {
       <div className='mt-14'>
         <div className="text-center py-6 px-4">
           <h1 className="text-2xl sm:text-3xl font-bold  mb-3 ">
-            “Check Your Symptoms Instantly & Talk to a Real Doctor”
+            “Check Your Symptoms Instantly & Talk to a Real Doctor”<span>{user?.name}:{user?.email}</span>
           </h1>
           <p className="text-base sm:text-sm ">
             AI-powered health assistant + video consultations with certified doctors.

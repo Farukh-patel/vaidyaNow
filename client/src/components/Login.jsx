@@ -4,20 +4,21 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import themeContext from '../contexts/themeContext';
 import axios from 'axios';
-
+import useUser from '../hooks/useUser';
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
   const { theme } = useContext(themeContext);
+  const {user,setUser}=useUser()
   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
   if (location.state?.toastMessage) {
     toast.success(location.state.toastMessage);
-    navigate(location.pathname, { replace: true }); // clear state
+    navigate(location.pathname, { replace: true }); 
   }
 }, [location, navigate]);
 
@@ -26,6 +27,7 @@ const handleOnLogin = async (e) => {
   try {
     const res = await axios.post("http://localhost:3000/api/v1/auth/login", formData);
     if (res.data.status === "success") {
+      setUser(res.data.user)
       toast.success('Login successful', {
         onClose: () => navigate("/"), 
         autoClose: 1500
@@ -35,6 +37,7 @@ const handleOnLogin = async (e) => {
     }
   } catch (err) {
     toast.error("Login failed. Please try again.");
+    console.log(err)
   }
 };
 
