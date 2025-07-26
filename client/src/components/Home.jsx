@@ -35,7 +35,7 @@ const Home = () => {
       <div className='mt-14'>
         <div className="text-center py-6 px-4">
           <h1 className="text-2xl sm:text-3xl font-bold  mb-3 ">
-            “Check Your Symptoms Instantly & Talk to a Real Doctor”<span>{user?.name}:{user?.email}</span>
+            “Check Your Symptoms Instantly & Talk to a Real Doctor”
           </h1>
           <p className="text-base sm:text-sm ">
             AI-powered health assistant + video consultations with certified doctors.
