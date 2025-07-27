@@ -19,7 +19,7 @@ const Home = () => {
     <div className={`min-h-screen font-mono ${theme === "light" ? "bg-gray-50 text-gray-800" : "bg-gray-900 text-amber-50"} `}>
       <ToastContainer
         position="top-center"
-        autoClose={5000}
+        autoClose={3000}
         hideProgressBar={false}
         closeOnClick={false}
         pauseOnHover

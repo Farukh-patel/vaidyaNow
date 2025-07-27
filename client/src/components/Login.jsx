@@ -30,7 +30,7 @@ const handleOnLogin = async (e) => {
       setUser(res.data.user)
       toast.success('Login successful', {
         onClose: () => navigate("/"), 
-        autoClose: 1500
+        autoClose: 1000
       });
     } else {
       toast.error('Invalid credentials');
