@@ -1,4 +1,5 @@
 import express from "express"
+import { GoogleGenerativeAI } from '@google/generative-ai'
 
 import { connectToDataBase } from './config/connectToMongoDB.js';
 import authRoutes from "./routes/authRoutes.js";
@@ -11,7 +12,7 @@ app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/api/v1/auth",authRoutes)
+app.use("/api/v1/auth", authRoutes)
 // Routes
 app.get("/", (req, res) => {
     res.send("This is the home page!");
@@ -31,3 +32,23 @@ const startServer = async () => {
 };
 
 startServer();
+
+// const axios = require('axios');
+// const axios = require('axios');
+import axios from 'axios'
+const genAI = new GoogleGenerativeAI("AIzaSyBVgz8F7eGaHhjP2QQPqJlLlFsHifXw0Js");
+
+    // const { content } = req.body;
+const getAires=async()=>{
+    try {
+        const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+        const result = await model.generateContent(" i am feeling headEch ,and rough throat am i ill right now??");
+        const aiReply = result.response.text();
+        console.log("aiReply", aiReply);
+    } catch (error) {
+        console.error("Error:", error);
+       
+    }
+};
+getAires();
+

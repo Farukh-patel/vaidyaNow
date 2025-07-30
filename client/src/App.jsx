@@ -1,4 +1,3 @@
-import './App.css'
 import Home from './components/Home'
 import Login from './components/Login'
 import Navbar from './components/Navbar'
@@ -10,9 +9,10 @@ import ContactUs from './components/ContactUs'
 import About from './components/About'
 import Services from './components/Services'
 import UserProvider from './contexts/UserProvider'
+import MyConversations from './components/MyConversations'
+import Profile from './components/Profile'
 function App() {
   const [theme, setTheme] = useState("dark");
-
   return (
     <>
       <themeContext.Provider value={{ theme, setTheme }}>
@@ -26,6 +26,8 @@ function App() {
               <Route path='/contactus' element={<ContactUs />} />
               <Route path='/aboutus' element={<About />} />
               <Route path='/services' element={<Services />} />
+              <Route path='/myconversations' element={<MyConversations />} />
+              <Route path='/profile' element={<Profile />} />
             </Routes>
           </BrowserRouter>
         </UserProvider>
